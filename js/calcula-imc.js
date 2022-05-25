@@ -14,7 +14,7 @@ var titulo = document.querySelector(".titulo");
 titulo.textContent = "Aparecida Nutricionista";
 
 var pacientes = document.querySelectorAll(".paciente"); //Retorna um array de pacientes que tem essa classe
-console.log(pacientes);
+//console.log(pacientes);
 
 for(i=0; i < pacientes.length; i++){
 
@@ -28,19 +28,19 @@ for(i=0; i < pacientes.length; i++){
 
 	var tdImc = paciente.querySelector(".info-imc");
 
-	var pesoEValido = true;
+	var pesoEValido = validaPeso(peso);
+	var alturaEValida = validaAltura(altura);
 
-	var alturaEValida = true;
 
-	if (peso <= 0 || peso >= 1000){
-		console.log("Peso inválido");
+	if (!pesoEValido){
+		//console.log("Peso inválido");
 		pesoEValido = false;
 		tdImc.textContent = "Peso inválido";
 		paciente.classList.add("paciente-invalido"); //adiciona uma nova classe ao meu objeto e pega o css dele, mais recomendável usar assim, se tiver que mudar a cor em vários lugares, é só alterar lá no CSS
 	}
 
-	if(altura <= 0 || altura >= 3.00){
-		console.log("Altura inválida!");
+	if(!alturaEValida){
+		//console.log("Altura inválida!");
 		alturaEValida = false;
 		tdImc.textContent = "Altura inválida";
 		paciente.style.backgroundColor = "orange"; //não recomendado mas funciona, é mais legal colocar uma classe para altura lá no css e aqui incluir a classe ao invés de setar o valor do atributo na mão
@@ -55,6 +55,24 @@ for(i=0; i < pacientes.length; i++){
 
 }
 
+
+function validaPeso(peso){ 
+	if(peso >= 0 && peso < 1000){ 
+		return true;
+	}else{
+		return false;
+	}
+}
+
+function validaAltura(altura){
+	if(altura >= 0 && altura <= 3.0){
+		return true;
+	}else{
+		return false;
+	}
+}
+
+
 function calculaImc(peso, altura){
 	var imc = 0;
 	
@@ -62,6 +80,9 @@ function calculaImc(peso, altura){
 
 	return imc.toFixed(2);
 }
+
+
+
 
 
 
