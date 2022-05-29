@@ -17,24 +17,15 @@ botaoAdicionar.addEventListener("click", function(event){
     //console.log(paciente);
 
 
-    var erros = validaPaciente(paciente);
-    //console.log(erros);
+    var erros = validaPaciente(paciente);//console.log(erros);
+    
 	if(erros.length > 0){
-	
 		exibeMensagensdeErro(erros);
-
-
 		return; //ele para aqui e não chega nas linhas seguintes (tabela)
 	}
 
 
-    var pacienteTr = montaTr(paciente);
-	console.log(pacienteTr);
-
-
-	var tabela = document.querySelector("#tabela-pacientes");
-
-	tabela.appendChild(pacienteTr);
+	adicionaPacienteNaTabela(paciente);
 
 	//limpar os campos.
 	form.reset();
@@ -43,6 +34,17 @@ botaoAdicionar.addEventListener("click", function(event){
 	mensagensErro.innerHTML = "";
 
 });
+
+
+
+
+	function adicionaPacienteNaTabela(paciente){
+
+		var pacienteTr = montaTr(paciente);
+		var tabela = document.querySelector("#tabela-pacientes");
+		tabela.appendChild(pacienteTr);
+	
+	}
 
 	
 
